@@ -5,10 +5,11 @@ specific format in terms of how the instruction is encoded in a 32-bit binary re
 
 # 1. R-Type Instruction Format:
 
-31     26     21    16    11     6        0
+ 31     26     21    16    11     6        0
 +-------+------+-----+-----+------+-------+
 |opcode | rs   | rt  | rd  |shamt | funct |
 +-------+------+-----+-----+------+-------+
+
 
 # 2. I-Type Instruction Format:
 
