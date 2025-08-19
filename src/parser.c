@@ -28,7 +28,7 @@ int tokenizeLabel(const char *line, char *label) {
         trimSpaces(label); // remove spaces around label
         return 1; // label found
     } else {
-        label[0] = '\0'; // no label
+        label[0] = '\0'; 
         return 0; // no label found
     }
 }
@@ -41,7 +41,7 @@ int parseInstruction(const char *mnemonic, Instruction *outInstr) {
         if (outInstr) {
             memcpy(outInstr, instr, sizeof(Instruction));
         }
-        return 1; // success
+        return 1; 
     }
     return 0; // invalid mnemonic
 }
@@ -51,7 +51,7 @@ int parseRegister(const char *token) {
     return getRegisterNumber(token); 
 }
 
-// Parses an immediate value from a token
+// Parses an immedi/ successate value from a token
 int parseImmediate(const char *token, int *value) {
     if (!token || !value) return 0;
 

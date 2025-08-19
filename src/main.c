@@ -46,10 +46,9 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    assembler_run_pass1(&ctx);  // Pass 1: build label table
-    // dumpLabelTable(&ctx.labels); 
+    assembler_run_pass1(&ctx); 
     rewind(ctx.inputFile); 
-    assembler_run_pass2(&ctx);  // Pass 2: generate machine code
+    assembler_run_pass2(&ctx); 
     assembler_free(&ctx);
 
     return EXIT_SUCCESS;

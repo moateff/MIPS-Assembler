@@ -24,8 +24,8 @@ int my_strcasecmp(const char *s1, const char *s2) {
 char *removeSpaces(const char *src) {
     if (!src) return NULL;
 
-    char *dest = malloc(strlen(src) + 1); // allocate enough space
-    if (!dest) return NULL; // handle memory allocation failure
+    char *dest = malloc(strlen(src) + 1); 
+    if (!dest) return NULL;
 
     char *start = dest;
     while (*src) {
@@ -34,17 +34,15 @@ char *removeSpaces(const char *src) {
         }
         src++;
     }
-    *dest = '\0'; // null-terminate
-    return start; // return the new string without spaces
+    *dest = '\0'; 
+    return start; 
 }
 
-// Remove comments starting with '#'
 void stripComments(char *line) {
     char *comment = strchr(line, '#');
-    if (comment) *comment = '\0'; // terminate string at comment
+    if (comment) *comment = '\0'; 
 }
 
-// Normalize spaces and tabs in a line (in-place)
 void normalizeSpaces(char *line) {
     char buffer[256];  // temporary buffer
     int i = 0, j = 0;
@@ -52,7 +50,7 @@ void normalizeSpaces(char *line) {
 
     while (line[i] != '\0') {
         if (isspace((unsigned char)line[i])) {
-            if (!spaceFlag) { // first space/tab after token
+            if (!spaceFlag) {
                 buffer[j++] = ' ';
                 spaceFlag = 1;
             }
@@ -63,10 +61,9 @@ void normalizeSpaces(char *line) {
         i++;
     }
     buffer[j] = '\0';
-    strcpy(line, buffer); // copy back to original line
+    strcpy(line, buffer); 
 }
 
-// Trim leading and trailing whitespace 
 void trimSpaces(char *str) {
     char *end;
     // Trim leading spaces
@@ -79,22 +76,19 @@ void trimSpaces(char *str) {
     *(end + 1) = '\0';
 }
 
-// Preprocess the line: remove extra spaces/tabs and trim
 void preprocessLine(char *line) {
-    stripComments(line);    // Remove comments
-    // normalizeSpaces(line);  // Normalize spaces and tabs
-    trimSpaces(line);   // Trim leading/trailing spaces
+    stripComments(line);    
+    // normalizeSpaces(line);  
+    trimSpaces(line);   
 }
 
-// Check if a line contains an instruction (not just a label)
 int lineHasInstruction(const char *line) {
+    if (strlen(line) <= 2) return 0; // skip empty lines
     const char *ptr = line;
-    if (*ptr == '\0') return 0;        // empty line
     if (strchr(ptr, ':') && ptr[strlen(ptr)-1] == ':') return 0; // label-only line
-    return 1; // contains instruction
+    return 1; 
 }
 
-// Print a string with visible control characters
 void printVisible(const char *s) {
     while (*s) {
         switch (*s) {

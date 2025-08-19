@@ -13,16 +13,10 @@ typedef struct {
     int count;
 } LabelTab;
 
-// Initialize label table
+// function prototypes
 void initLabelTab(LabelTab *tab);
-
-// Add a label with address
 int addLabel(LabelTab *tab, const char *name, int address);
-
-// Lookup address by label, returns -1 if not found
 int lookupLabel(const LabelTab *tab, const char *name);
-
-// Dump label table for debugging
 void dumpLabelTable(const LabelTab *tab);
 
 #endif // LABELTAB_H

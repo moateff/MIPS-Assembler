@@ -5,7 +5,6 @@
 #include "labeltab.h"
 #include "config.h"
 
-// Parsed operands for code generation
 typedef struct {
     Instruction instr;  // mnemonic info
     int address;        // instruction address in memory
@@ -17,7 +16,7 @@ typedef struct {
 } ParsedInstruction;
 
 // Tokenization
-int tokenizeLine(char *line, char *tokens[], int maxTokens); // it will trim whitespace and split by spaces, colons, commas, and parentheses
+int tokenizeLine(char *line, char *tokens[], int maxTokens); 
 int tokenizeLabel(const char *line, char *label);
 
 // Instruction Parsing

@@ -18,7 +18,7 @@ int addLabel(LabelTab *tab, const char *name, int address) {
     tab->labels[tab->count].name[MAX_LABEL_LEN-1] = '\0';
     tab->labels[tab->count].address = address;
     tab->count++;
-    return 1; // success
+    return 1;
 }
 
 int lookupLabel(const LabelTab *tab, const char *name) {

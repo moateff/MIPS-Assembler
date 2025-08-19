@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "labeltab.h"
 
-// Example AssemblerContext structure
 typedef struct {
     FILE *inputFile;
     FILE *outputFile;

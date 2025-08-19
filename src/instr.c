@@ -5,7 +5,6 @@
 #include "instr.h"
 #include "utils.h"
 
-// Define the instruction set
 const Instruction instructionSet[] = {
     {"add",  R_TYPE, 0x00, 0x20}, // opcode=0, funct=32
     {"sub",  R_TYPE, 0x00, 0x22},
@@ -20,7 +19,6 @@ const Instruction instructionSet[] = {
     {NULL, 0, 0, 0} // sentinel (end marker)
 };
 
-// Define the register map
 const RegisterMap regTable[] = {
     {"$zero", 0}, {"$at", 1},
     {"$v0", 2}, {"$v1", 3},
@@ -41,7 +39,7 @@ const Instruction* findInstruction(const char *mnemonic) {
             return &instructionSet[i];
         }
     }
-    return NULL; // not found
+    return NULL; 
 }
 
 void printInstruction(const char *mnemonic) {
@@ -62,7 +60,7 @@ int getRegisterNumber(const char *reg) {
         }
     }
 
-    // Second: check if it is numeric like $8 or $31
+    // Second: check if it is numeric
     if (reg[0] == '$' && isdigit((unsigned char)reg[1])) {
         int num = atoi(reg + 1); // skip '$'
         if (num >= 0 && num < 32) {
