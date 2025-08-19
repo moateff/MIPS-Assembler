@@ -1,0 +1,16 @@
+mips-assembler/
+│── main.c   
+│── assembler.c / assembler.h  
+│── instr.c / instr.h          
+│── parser.c / parser.h 
+│── labeltab.c / labeltab.h
+│── encode.c / encode.h 
+│── utils.c / utils.h
+│── config.h
+│── Makefile
+│── test.asm       
+
+
+Two-pass assembler:
+Pass 1: collect labels + instruction addresses.
+Pass 2: encode instructions using the label table.
