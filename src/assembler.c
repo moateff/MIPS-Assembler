@@ -13,8 +13,8 @@
 void assembler_init(AssemblerContext *ctx) {
     if (!ctx) return;
 
-    ctx->inFile = NULL;
-    ctx->outFile = NULL;
+    ctx->inputFile = NULL;
+    ctx->outputFile = NULL;
     initLabelTab(&ctx->labels); // assuming you already implemented this
 }
 
@@ -22,14 +22,14 @@ void assembler_init(AssemblerContext *ctx) {
 void assembler_free(AssemblerContext *ctx) {
     if (!ctx) return;
 
-    if (ctx->inFile) {
-        fclose(ctx->inFile);
-        ctx->inFile = NULL;
+    if (ctx->inputFile) {
+        fclose(ctx->inputFile);
+        ctx->inputFile = NULL;
     }
 
-    if (ctx->outFile) {
-        fclose(ctx->outFile);
-        ctx->outFile = NULL;
+    if (ctx->outputFile) {
+        fclose(ctx->outputFile);
+        ctx->outputFile = NULL;
     }
 
     // freeLabelTab(&ctx->labels); // assuming you already implemented this
@@ -40,7 +40,7 @@ void assembler_run_pass1(AssemblerContext *ctx) {
     char line[MAX_LINE_LEN];
     int address = 0;
 
-    while (fgets(line, sizeof(line), ctx->inFile)) {
+    while (fgets(line, sizeof(line), ctx->inputFile)) {
         preprocessLine(line); // remove comments and trim spaces
 
         if (strlen(line) <= 2) continue; // skip empty lines
@@ -71,7 +71,7 @@ void assembler_run_pass2(AssemblerContext *ctx){
     char line[MAX_LINE_LEN];
     int address = 0; // instruction address counter
 
-    while (fgets(line, sizeof(line), ctx->inFile)) {
+    while (fgets(line, sizeof(line), ctx->inputFile)) {
         preprocessLine(line); // remove comments, trim spaces
         
         if (strlen(line) <= 2) continue; // skip empty lines
@@ -83,7 +83,7 @@ void assembler_run_pass2(AssemblerContext *ctx){
         Instr.address = address; // set instruction address
 
         uint32_t machineCode = encodeInstruction(&Instr, &(ctx->labels));
-        fprintf(ctx->outFile, "%08X\n", machineCode); // write machine code to output file
+        fprintf(ctx->outputFile, "%08X\n", machineCode); // write machine code to output file
         address += 4; 
     }
 }

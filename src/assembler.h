@@ -6,8 +6,8 @@
 
 // Example AssemblerContext structure
 typedef struct {
-    FILE *inFile;
-    FILE *outFile;
+    FILE *inputFile;
+    FILE *outputFile;
     LabelTab labels;
 } AssemblerContext;
 
