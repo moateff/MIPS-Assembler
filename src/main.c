@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     }
 
     assembler_run_pass1(&ctx);  // Pass 1: build label table
-    dumpLabelTable(&ctx.labels); 
+    // dumpLabelTable(&ctx.labels); 
     rewind(ctx.inputFile); 
     assembler_run_pass2(&ctx);  // Pass 2: generate machine code
     assembler_free(&ctx);
