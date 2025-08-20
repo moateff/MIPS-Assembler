@@ -3,6 +3,7 @@ CFLAGS = -Wall -Wextra -g
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+TEST_DIR = test
 
 # Collect all .c files in src/
 SRCS = $(wildcard $(SRC_DIR)/*.c)
@@ -32,9 +33,10 @@ $(BIN_DIR):
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-# Default build target
-all: bin/MIPS_Assembler
-
-# Run the assembler after building
-run: all
-	./bin/MIPS_Assembler test/test.asm 
+# Run assembler for all .asm files
+run: $(TARGET)
+	@for f in $(wildcard $(TEST_DIR)/*.asm); do \
+		out=$${f%.asm}.hex; \
+		echo "Assembling $$f -> $$out"; \
+		$(TARGET) $$f $$out; \
+	done

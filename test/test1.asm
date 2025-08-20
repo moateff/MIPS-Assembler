@@ -6,10 +6,7 @@
 # If successful, it should write the value 7 to address 84
 
 #       Assembly                  Description           Address Machine
-main:   
-
-
-addi $2, $0, 5          # initialize $2 = 5     0       20020005
+main:   addi $2, $0, 5          # initialize $2 = 5     0       20020005
         addi $3, $0, 12         # initialize $3 = 12    4       2003000c
         addi $7, $3, -9         # initialize $7 = 3     8       2067fff7
         or   $4, $7, $2         # $4 <= 3 or 5 = 7      c       00e22025
@@ -27,31 +24,3 @@ around: slt  $4, $7, $2         # $4 = 3 < 5 = 1        28      00e2202a
         j    end                # should be taken       3c      08000011
         addi $2, $0, 1          # shouldn't happen      40      20020001
 end:    sw   $2, 84($0)         # write adr 84 = 7      44      ac020054
-
-beq  $4, $0, loop     # should be taken       20      10800001
-
-# Simple test program for assembler
-# Arithmetic
-add $t0, $t1, $t2     # R-type
-sub $t3, $t0, $t1
-
-# Immediate values
-addi $t4, $t5, 10
-ori  $t6, $t7, 0xFF
-
-# Memory access
-lw   $s0, 0($s1)
-sw   $s2, 4($s3)
-
-# Branch with label
-beq  $t0, $t1, target
-nop
-
-# Jump
-j    end
-
-target:
-    addi $a0, $a0, 1
-
-end:
-    jr $ra
